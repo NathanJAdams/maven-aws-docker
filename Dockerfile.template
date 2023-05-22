@@ -1,2 +1,15 @@
-FROM ${BASE_IMAGE}
+FROM maven:${BASE_IMAGE_TAG}
 
+RUN apt-get update
+RUN apt-get install -y \
+    curl \
+    jq \
+    libxml-xpath-perl \
+    unzip
+
+RUN curl --silent --show-error --fail "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+ && unzip awscliv2.zip \
+ && ./aws/install \
+ && rm awscliv2.zip
+
+ENTRYPOINT [ "bash" ]

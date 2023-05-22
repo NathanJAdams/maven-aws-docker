@@ -1,0 +1,21 @@
+name: Build Docker Images
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        base-image-tag: [3.8.6-openjdk-11-slim]
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
+          IMAGE_NAME="toodleloo/maven-aws:${BASE_IMAGE_TAG}"
+          DOCKERFILE_CONTENTS=$(envsubst < Dockerfile.template)
+          docker build -t "$IMAGE_NAME" - <<< "DOCKERFILE_CONTENTS"
+          echo "$DOCKERHUB_PASSWORD" | docker login --username toodleloo --password-stdin
+          docker push "$IMAGE_NAME"
