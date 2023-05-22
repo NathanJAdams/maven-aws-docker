@@ -1,4 +1,4 @@
-FROM maven:"${BASE_IMAGE_TAG}"
+FROM maven:${BASE_IMAGE_TAG}
 
 RUN apt-get update
 RUN apt-get install -y \
