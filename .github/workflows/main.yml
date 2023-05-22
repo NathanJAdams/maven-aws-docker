@@ -15,6 +15,7 @@ jobs:
         with:
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: |
+          echo "$DOCKERHUB_PASSWORD"
           echo "$DOCKERHUB_PASSWORD" | docker login --username toodleloo --password-stdin
           export BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
           IMAGE_NAME="toodleloo/maven-aws:${BASE_IMAGE_TAG}"
