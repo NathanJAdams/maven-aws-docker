@@ -3,9 +3,10 @@ FROM maven:${BASE_IMAGE_TAG}
 RUN apt-get update
 RUN apt-get install -y \
     curl \
+    gettext \ # provides envsubst
     git \
     jq \
-    libxml-xpath-perl \
+    libxml-xpath-perl \ # provides xpath
     unzip
 
 RUN curl --silent --show-error --fail "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
