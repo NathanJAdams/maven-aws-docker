@@ -12,7 +12,7 @@ jobs:
         base-image-tag: [3.8.6-openjdk-11-slim]
     steps:
       - uses: actions/checkout@v3
-        env:
+        with:
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username toodleloo --password-stdin
