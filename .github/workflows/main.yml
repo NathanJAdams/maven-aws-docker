@@ -15,7 +15,7 @@ jobs:
         env:
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: |
-          echo '$DOCKERHUB_PASSWORD' | docker login -u toodleloo --password-stdin
+          echo $DOCKERHUB_PASSWORD | docker login -u toodleloo --password-stdin
           export BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
           IMAGE_NAME="toodleloo/maven-aws:${BASE_IMAGE_TAG}"
           DOCKERFILE_CONTENTS=$(envsubst < Dockerfile.template)
