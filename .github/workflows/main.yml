@@ -9,7 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        base-image-tag: [3.8.6-openjdk-11-slim]
+        base-image-tag: [
+          3.8.6-openjdk-8-slim,
+          3.8.6-openjdk-11-slim,
+          3.6.3-openjdk-14-slim,
+          3.8.1-openjdk-15-slim,
+          3.8.3-openjdk-16-slim,
+          3.8.5-openjdk-17-slim,
+          3.8.7-openjdk-18-slim,
+        ]
     steps:
       - uses: actions/checkout@v3
       - run: |
