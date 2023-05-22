@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
+          export BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
           IMAGE_NAME="toodleloo/maven-aws:${BASE_IMAGE_TAG}"
           DOCKERFILE_CONTENTS=$(envsubst < Dockerfile.template)
           echo "$DOCKERFILE_CONTENTS"
