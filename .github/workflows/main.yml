@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         env:
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          DOCKERHUB_PASSWORD: '${{ secrets.DOCKERHUB_PASSWORD }}'
       - run: |
           echo $DOCKERHUB_PASSWORD | docker login --username toodleloo --password-stdin
           export BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
