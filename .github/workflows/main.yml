@@ -12,11 +12,8 @@ jobs:
         base-image-tag: [3.8.6-openjdk-11-slim]
     steps:
       - uses: actions/checkout@v3
-        env:
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: |
-          which base64
-          echo $DOCKERHUB_PASSWORD | base64 --decode | docker login --username toodleloo --password-stdin
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} | base64 --decode | docker login --username toodleloo --password-stdin
           export BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
           IMAGE_NAME="toodleloo/maven-aws:${BASE_IMAGE_TAG}"
           DOCKERFILE_CONTENTS=$(envsubst < Dockerfile.template)
