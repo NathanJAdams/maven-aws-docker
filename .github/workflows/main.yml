@@ -16,6 +16,6 @@ jobs:
           BASE_IMAGE_TAG="${{ matrix.base-image-tag }}"
           IMAGE_NAME="toodleloo/maven-aws:${BASE_IMAGE_TAG}"
           DOCKERFILE_CONTENTS=$(envsubst < Dockerfile.template)
-          docker build -t "$IMAGE_NAME" - <<< "DOCKERFILE_CONTENTS"
+          docker build -t "$IMAGE_NAME" - <<< "$DOCKERFILE_CONTENTS"
           echo "$DOCKERHUB_PASSWORD" | docker login --username toodleloo --password-stdin
           docker push "$IMAGE_NAME"
